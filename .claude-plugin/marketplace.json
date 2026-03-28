@@ -1,0 +1,22 @@
+{
+  "name": "my-skills",
+  "owner": {
+    "name": "Bob",
+    "email": ""
+  },
+  "metadata": {
+    "description": "生产级 SQL 生成工具：建表、CRUD 查询",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "gsql",
+      "description": "生成生产级 SQL：CREATE TABLE 建表规范、CRUD 查询优化",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./gsql"
+      ]
+    }
+  ]
+}
