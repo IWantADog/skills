@@ -5,8 +5,8 @@
     "email": ""
   },
   "metadata": {
-    "description": "生产级 SQL 生成工具：建表、CRUD 查询",
-    "version": "1.0.0"
+    "description": "生产级 SQL 生成工具：建表、CRUD 查询；电子书阅读计划生成",
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -16,6 +16,15 @@
       "strict": false,
       "skills": [
         "./gsql"
+      ]
+    },
+    {
+      "name": "ebook-reading-plan",
+      "description": "解析 mobi/epub 电子书目录，按用户每天可用阅读分钟数生成 Markdown 阅读计划（按时间均分、长章节自动拆分、标注页码、可复制到滴答清单等任务管理工具）",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./ebook-reading-plan"
       ]
     }
   ]
