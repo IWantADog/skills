@@ -77,9 +77,41 @@ python3 ~/.claude/skills/ebook-reading-plan/scripts/parse_ebook.py "<book_path>"
 
 **不要**自己在主对话里手算调度——脚本已经实现了"按每天分钟数切日 + 长章节拆分 + 页码标注"的完整逻辑,跟着脚本走最稳。
 
-### Step 5 — 报告结果
+### Step 5 — 推送到滴答清单(可选)
 
-简短确认:已生成阅读计划,共 N 天,文件路径 `<path>`。如果想调整速度/每页字数,提示用户修改脚本顶部的常量再重跑。
+如果用户要求推送到滴答清单,使用 dida365 MCP 工具:
+
+```bash
+mcp__dida365__create_task
+```
+
+**必须遵守的规则**:
+- **禁止修改** 生成的 Markdown 内容,直接推送原文
+- 读取 `<书名>-reading-plan.md` 的完整内容作为 `content` 参数
+- 不能裁剪、删减、重新排版或改写任何文案
+- 确保 `#` 标题、列表格式、页码区间、说明部分完整无误
+- 每次推送前验证文件内容未被修改
+
+dida365 MCP 连接方式:
+1. 在 Claude Code 中运行 `/mcp` 命令
+2. 连接提示: "Authentication successful. Connected to dida365."
+3. 选择目标项目 ID(如 `reading` 项目 ID: `6033498d69e600e0337f107d`)
+4. 调用 `mcp__dida365__create_task` 创建任务
+
+参数示例:
+```json
+{
+  "content": "（Markdown 完整原文）",
+  "title": "《书名》阅读计划",
+  "projectId": "6033498d69e600e0337f107d",
+  "kind": "TEXT",
+  "priority": 0
+}
+```
+
+### Step 6 — 报告结果
+
+简短确认:已生成阅读计划,共 N 天,文件路径 `<path>`。如果用户要求推送到滴答清单,确认任务已创建。如果想调整速度/每页字数,提示用户修改脚本顶部的常量再重跑。
 
 ## 生成的 Markdown 样例(节选)
 
